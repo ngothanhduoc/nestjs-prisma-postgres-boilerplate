@@ -1,0 +1,21 @@
+version: '3.9'
+
+volumes:
+  data:
+    driver: local
+
+services:
+  db:
+    image: postgres:13.2-alpine
+    restart: always
+    volumes:
+      - ./scripts:/tmp/scripts
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_MULTIPLE_DATABASES
+    expose:
+      - '5432'
+    ports:
+      - 5432:5432
